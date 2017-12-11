@@ -1,0 +1,26 @@
+[ng-dropdown-multiselect]{
+    .multiselect-parent{
+        width: 100%;
+        .btn{
+            text-align: left;
+            width: 100%;
+            .caret{
+            }
+        }
+    }
+}
+
+.form-group-custom-select{
+    [ng-dropdown-multiselect]{
+        .multiselect-parent{
+            .btn{
+                padding: 9px 0px;
+                background-color: transparent;
+                border-color: transparent;
+                .caret{
+                    display: none;
+                }
+            }
+        }
+    }
+}

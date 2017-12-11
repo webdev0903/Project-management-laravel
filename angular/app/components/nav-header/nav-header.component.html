@@ -1,0 +1,176 @@
+<!-- START HEADER -->
+<div class="header " ng-class="{'transparent': is('app.maps.vector') || is('app.maps.google') }">
+    <!-- START MOBILE CONTROLS -->
+    <!-- LEFT SIDE -->
+    <div class="pull-left full-height visible-sm visible-xs">
+        <!-- START ACTION BAR -->
+        <div class="sm-action-bar">
+            <a href="" class="btn-link toggle-sidebar" data-toggle="sidebar">
+                <span class="icon-set menu-hambuger"></span>
+            </a>
+        </div>
+        <!-- END ACTION BAR -->
+    </div>
+    <!-- RIGHT SIDE -->
+    <div class="pull-right full-height visible-sm visible-xs">
+        <!-- START ACTION BAR -->
+        <div class="sm-action-bar">
+            <a href="" class="btn-link" data-toggle="quickview" data-toggle-element="#quickview">
+                <span class="icon-set menu-hambuger-plus"></span>
+            </a>
+        </div>
+        <!-- END ACTION BAR -->
+    </div>
+    <!-- END MOBILE CONTROLS -->
+    <div class=" pull-left sm-table">
+        <div class="header-inner">
+            <div class="brand inline">
+                <span><a ui-sref="app.landing"><img src="assets/img/logo.png" alt="logo" class="brand" data-src="assets/img/logo.png" data-src-retina="assets/img/logo.png" width="78" height="27"></a></span>
+            </div>
+            <a class="search-link" ng-click="vm.showSearchOverlay()"><i class="pg-search"></i>Type anywhere to <span class="bold">search</span></a>
+        </div>
+    </div>
+    <div class=" pull-right">
+        <div class="header-inner">
+            <a href="" class="btn-link icon-set menu-hambuger-plus m-l-20 sm-no-margin hidden-sm hidden-xs" data-toggle="quickview" data-toggle-element="#quickview">
+            <span class="badge badge-danger chat_notification" ng-if="vm.chatNotificationTotal">{{vm.chatNotificationTotal}}</span>
+            </a>
+        </div>
+    </div>
+    <div class=" pull-right">
+        <!-- START User Info-->
+        <div class="visible-lg visible-md m-t-10 clearfix">
+            <!-- BEGIN NOTIFICATION DROPDOWN -->
+            <ul class="notification-list no-margin hidden-sm hidden-xs b-grey b-l b-r no-style p-l-30 p-r-20">
+                <li class="p-r-15 inline">
+                    <div class="dropdown">
+                        <a href="javascript:;" id="notification-center" class="icon-set globe-fill" data-toggle="dropdown">
+                            <span class="bubble" ng-if="vm.notificaitonList.length"></span>
+                        </a>
+                        <div class="dropdown-menu notification-toggle" role="menu" aria-labelledby="notification-center">
+                            <div class="notification-panel">
+                                <!-- START Notification Body-->
+                                <div class="notification-body scrollable" ui-jq="scrollbar" ui-options="{
+            ignoreOverlay: false
+        }">
+                                    <!-- START Notification Item-->
+                                    <div ng-repeat="(index,data) in vm.notificaitonList" ng-click="vm.redirectNotifciation(data)" class="notification-item unread clearfix">
+                                        <div class="heading">
+                                            <div class="thumbnail-wrapper d24 circular b-white m-r-5 b-a b-white m-t-10 m-r-10">
+                                                <img width="30" height="30" check-image ng-src="{{data.user.avatar}}" alt="">
+                                            </div>
+                                            <a href="javascript:;" class="text-complete pull-left">
+                                                <span class="bold">{{data.user.name}}</span>
+                                                <span class="fs-12 m-l-10">{{data.message}}</span>
+                                            </a>
+                                            <span class="pull-right time" am-time-ago="data.updateTime | amUtc | amLocal"></span>
+                                        </div>
+                                    </div>
+                                    <!-- END Notification Item-->
+                                </div>
+                                <!-- END Notification Body-->
+                                <!-- START Notification Footer-->
+                                <div class="notification-footer text-center">
+                                    <a href="javascript:;" ng-click="vm.readAllNotification()" class="">Read all notifications</a>
+                                    <a data-toggle="refresh" class="portlet-refresh text-black pull-right" href="">
+                                        <i class="pg-refresh_new"></i>
+                                    </a>
+                                </div>
+                                <!-- END Notification Footer-->
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- <li class="p-r-15 inline">
+                    <a href="javascript:;" class="icon-set clip "></a>
+                </li> -->
+                <li class="p-r-15 inline">
+                    <div class="dropdown pull-right main-menu-div">
+                        <a href="javascript:;" id="main-menu-center" class="icon-set grid-box" data-toggle="dropdown">
+                        </a>
+                        <ul class="dropdown-menu main-menu-dropdown" role="menu">
+                            <li class="" ui-sref-active="active">
+                                <a ui-sref="app.landing" class="clearfix">
+                                    <span class="pull-left">Discover</span>
+                                    <span class="pull-right"><i class="fa fa-dashboard"></i></span>
+                				</a>
+                            </li>
+                            <li class="" ui-sref-active="active">
+                                <a ui-sref="app.organiztion" class="clearfix">
+                                    <span class="pull-left">Contacts</span>
+                                    <span class="pull-right"><i class="fa fa-user"></i></span>
+                				</a>
+                            </li>
+                            <li class=""  ui-sref-active="active">
+                                <a ui-sref="app.preference" class="clearfix">
+                                    <span class="pull-left">Preferences</span>
+                                    <span class="pull-right"><i class="fa fa-sliders"></i></span>
+                				</a>
+                            </li>
+                            <li class="dropdown-submenu "  ui-sref-active="active" ng-if="vm.hasAnyRole(['admin.super','admin.admin'])">
+                                <a href="javascript:;" class="clearfix">
+                                    <span class="">Administration</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="" ui-sref-active="active">
+                                        <a ui-sref="app.admin.users" class="clearfix">
+                                            <span class="pull-left">Users</span>
+                                        </a>
+                                    </li>
+                                    <li class="" ui-sref-active="active">
+                                        <a ui-sref="app.admin.departments"  class="clearfix">
+                                            <span class="pull-left">Departments</span>
+                                        </a>
+                                    </li>
+                                    <li class="" ui-sref-active="active">
+                                        <a ui-sref="app.admin.reward_management" class="clearfix">
+                                            <span class="pull-left">Rewards</span>
+                                        </a>
+                                    </li>
+                                    <li class="" ui-sref-active="active">
+                                        <a ui-sref="app.admin.label_management" class="clearfix">
+                                            <span class="pull-left">Labels</span>
+                                        </a>
+                                    </li>
+                                    <li class="" ui-sref-active="active">
+                                        <a ui-sref="app.admin.jobtitle_management" class="clearfix">
+                                            <span class="pull-left">Job Title</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- END NOTIFICATION DROPDOWN -->
+            <div class="pull-left p-r-10 p-t-10 fs-16 font-heading">
+                <span class="semi-bold">{{vm.userInfo.name}}</span>
+            </div>
+            <div class="dropdown pull-right">
+                <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="thumbnail-wrapper d32 circular inline m-t-5">
+                    <img check-image   ng-src="{{vm.userInfo.avatar}}" alt=""  width="32" height="32">
+                </span>
+                </button>
+                <ul class="dropdown-menu profile-dropdown" role="menu">
+                    <li><a ui-sref="app.user.profile"><i class="fa fa-user"></i> Profile</a>
+                    </li>
+                    <li><a ui-sref="app.user.password"><i class="fa fa-edit"></i> Change Password</a>
+                    </li>
+                    <li><a ui-sref="app.preference"><i class="pg-settings_small"></i> Settings</a>
+                    </li>
+                    <li class="bg-master-lighter">
+                        <a ui-sref="app.logout" class="clearfix">
+                            <span class="pull-left">Logout</span>
+                            <span class="pull-right"><i class="pg-power"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- END User Info-->
+    </div>
+</div>
+<!-- END HEADER -->

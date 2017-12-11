@@ -1,0 +1,56 @@
+<form id="form-login" class="p-t-15" role="form" ng-submit="vm.login()" method="post" name="loginForm">
+    <div class="callout callout-danger" ng-if="vm.loginfailederror">
+        <h4>Login Failed</h4>
+        <p>{{ vm.loginfailederror }}</p>
+    </div>
+    <div class="callout callout-danger" ng-if="vm.loginfailed">
+        <h4>Login Failed</h4>
+        <p>Incorrect Email/Username or Password.</p>
+    </div>
+    <div class="callout callout-danger" ng-if="vm.unverified">
+        <h4>Email Unverified</h4>
+        <p>Please check your email and click the verification link.</p>
+    </div>
+    <div class="callout callout-success" ng-if="vm.registerSuccess">
+        <h4>Registration Success!</h4>
+        <p>A verification link has been sent to your Email Account. Thank You!</p>
+    </div>
+    <div class="callout callout-success" ng-if="vm.successMsg">
+        <h4>Success!</h4>
+        <p>{{ vm.successMsg }}</p>
+    </div>
+    <!-- START Form Control-->
+    <div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : loginForm.email.$invalid && !loginForm.email.$pristine }">
+        <label>Login</label>
+        <div class="controls">
+            <input id="sign-in-email" name="email" type="email" class="form-control" placeholder="Email" ng-model="vm.email" required ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
+        </div>
+    </div>
+    <label class="error" for="username" ng-show="loginForm.email.$invalid && !loginForm.email.$pristine">This field is required.</label>
+    <!-- END Form Control-->
+    <!-- START Form Control-->
+    <div pg-form-group class="form-group form-group-default" ng-class="{ 'has-error' : loginForm.password.$invalid && !loginForm.password.$pristine }">
+        <label>Password</label>
+        <div class="controls">
+            <input id="sign-in-password" name="password" type="password" class="form-control" placeholder="Password" ng-model="vm.password" ng-required="true">
+        </div>
+    </div>
+    <label class="error" for="username" ng-show="loginForm.password.$invalid && !loginForm.password.$pristine">This field is required.</label>
+    <!-- START Form Control-->
+    <div class="row">
+        <div class="col-md-6 no-padding">
+            <div class="checkbox ">
+                <input type="checkbox" value="1" id="checkbox1">
+                <label for="checkbox1">Keep Me Signed in</label>
+            </div>
+        </div>
+        <div class="col-md-12 text-right">
+            <a ui-sref="register" class="text-info small">Create an account</a>
+        </div>
+        <div class="col-md-12 text-right">
+            <a ui-sref="forgot_password" class="text-info small">Forgot password?</a>
+        </div>
+    </div>
+    <!-- END Form Control-->
+    <button class="btn btn-primary btn-cons m-t-10" type="submit" ng-disabled="loginForm.$invalid">Sign in</button>
+</form>

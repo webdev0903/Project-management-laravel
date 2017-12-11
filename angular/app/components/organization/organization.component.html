@@ -1,0 +1,79 @@
+<div class="container-fluid container-fixed-lg contact-page">
+    <ul class="breadcrumb">
+        <li>
+            <a>Home</a>
+        </li>
+        <li><a class="active">Contacts</a>
+        </li>
+    </ul>
+    <div class="row inner-contact-div">
+        <div class="panel panel-transparent col-md-10 col-md-offset-1">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs nav-tabs-fillup" pg-tab-dropdownfx>
+                <li class="active">
+                    <a data-toggle="tab" pg-tab href="#tab-fillup1"><span>All Contacts</span></a>
+                </li>
+                <li>
+                    <a data-toggle="tab" pg-tab href="#tab-fillup2"><span>Favorites</span></a>
+                </li>
+            </ul>
+            <div class="row m-t-10">
+                <div class="col-md-2">
+                    <div class="form-group filter-div">
+                        <div ng-dropdown-multiselect="" translation-texts="{buttonDefaultText: 'All Departmnet'}" events="vm.departments.event_setting" extra-settings="vm.departments.setting" options="vm.departments.list" selected-model="vm.departments.sel"></div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group filter-div">
+                        <div ng-dropdown-multiselect="" translation-texts="{buttonDefaultText: 'All Permission'}" events="vm.permissions.event_setting" extra-settings="vm.permissions.setting" options="vm.permissions.list" selected-model="vm.permissions.sel"></div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group contact-search-div">
+                        <i class="pg-search"></i>
+                        <input class="form-control promo-search-field " ng-model="vm.searchName" placeholder="Search in Contacts" type="search">
+                    </div>
+                </div>
+            </div>
+            <!-- Tab panes -->
+            <div class="tab-content users-div">
+                <div class="tab-pane active" id="tab-fillup1">
+                    <div class="row column-seperation">
+                        <div class="col-md-3 col-sm-4 col-xs-6 user-profie-div" ng-repeat="item in vm.users" ng-if="vm.filterByName(item)">
+                            <div class="p-t-25">
+                                <a ng-click="vm.viewProfile(item)">
+                                    <div class="user-avatar">
+                                        <img check-image alt="" ng-src="{{item.avatar}}" width="130" height="130">
+                                    </div>
+                                    <div class="m-t-10">
+                                        <h5 class="no-margin overflow-ellipsis user-name">{{item.name}}</h5>
+                                        <p class="hint-text all-caps user-title small no-margin overflow-ellipsis job_title">
+                                            <span ng-repeat="job_item in item.job_titles">{{job_item.title}}</span>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tab-fillup2">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-4 col-xs-6 user-profie-div" ng-repeat="item in vm.users" ng-if="vm.filterByName(item) && vm.favIds.indexOf(item.id) != -1">
+                            <div class="p-t-25">
+                                <a ng-click="vm.viewProfile(item)">
+                                    <div class="user-avatar">
+                                        <img check-image alt="" ng-src="{{item.avatar}}" width="130" height="130">
+                                    </div>
+                                    <div class="m-t-10">
+                                        <h5 class="no-margin overflow-ellipsis user-name">{{item.name}}</h5>
+                                        <p class="hint-text all-caps user-title small no-margin overflow-ellipsis job_title"><span ng-repeat="job_item in item.job_titles">{{job_item.title || 'NA'}}</span></p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

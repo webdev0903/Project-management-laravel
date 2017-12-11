@@ -1,0 +1,174 @@
+<!--START QUICKVIEW -->
+<div id="quickview" class="quickview-wrapper" data-pages="quickview">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+        <li>
+            <a href="#quickview-alerts" data-toggle="tab" pg-tab>Alerts</a>
+        </li>
+        <li class="active">
+            <a href="#quickview-chat" data-toggle="tab" pg-tab>Chat</a>
+        </li>
+    </ul>
+    <a class="btn-link quickview-toggle" data-toggle-element="#quickview" data-toggle="quickview"  ng-click="vm.leftChannel()"><i class="pg-close"></i></a>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- BEGIN Alerts !-->
+        <div class="tab-pane fade no-padding" id="quickview-alerts">
+            <div class="view-port clearfix" id="alerts">
+                <!-- BEGIN Alerts View !-->
+                <div class="view bg-white">
+                    <!-- BEGIN View Header !-->
+                    <div class="navbar navbar-default navbar-sm">
+                        <div class="navbar-inner">
+                            <!-- BEGIN Header Controler !-->
+                            <a href="javascript:;" class="inline action p-l-10 link text-master" pg-navigate data-view-port="#chat" data-view-animation="push-parrallax">
+                                <i class="pg-more"></i>
+                            </a>
+                            <!-- END Header Controler !-->
+                            <div class="view-heading">
+                                Notications
+                            </div>
+                            <!-- BEGIN Header Controler !-->
+                            <a href="" class="inline action p-r-10 pull-right link text-master">
+                                <i class="pg-search"></i>
+                            </a>
+                            <!-- END Header Controler !-->
+                        </div>
+                    </div>
+                    <!-- END View Header !-->
+                    <!-- BEGIN Alert List !-->
+                    <div data-init-list-view="ioslist" class="list-view boreded no-top-border">
+                        <!-- BEGIN List Group !-->
+                        <div class="list-view-group-container">
+                            <!-- BEGIN List Group Header!-->
+                            <div class="list-view-group-header text-uppercase">
+                                Calendar
+                            </div>
+                            <!-- END List Group Header!-->
+                            <ul>
+                                <!-- BEGIN List Group Item!-->
+                                <li class="alert-list">
+                                    <!-- BEGIN Alert Item Set Animation using data-view-animation !-->
+                                    <a href="javascript:;" class="" pg-navigate data-view-port="#chat" data-view-animation="push-parrallax">
+                                        <p class="col-xs-height col-middle">
+                                            <span class="text-warning fs-10"><i class="fa fa-circle"></i></span>
+                                        </p>
+                                        <p class="p-l-10 col-xs-height col-middle col-xs-9 overflow-ellipsis fs-12">
+                                            <span class="text-master">David Nester Birthday</span>
+                                        </p>
+                                        <p class="p-r-10 col-xs-height col-middle fs-12 text-right">
+                                            <span class="text-warning">Today <br></span>
+                                            <span class="text-master">All Day</span>
+                                        </p>
+                                    </a>
+                                    <!-- END Alert Item!-->
+                                    <!-- BEGIN List Group Item!-->
+                                </li>
+                                <!-- END List Group Item!-->
+                            </ul>
+                        </div>
+                        <!-- END List Group !-->
+                    </div>
+                    <!-- END Alert List !-->
+                </div>
+                <!-- EEND Alerts View !-->
+            </div>
+        </div>
+        <!-- END Alerts !-->
+        <div class="tab-pane fade in active no-padding" id="quickview-chat">
+            <div class="view-port clearfix" id="chat">
+                <div class="view bg-white">
+                    <!-- BEGIN View Header !-->
+                    <div class="navbar navbar-default">
+                        <div class="navbar-inner">
+                            <div class="view-heading">
+                                Chat List
+                                <div class="fs-11">Show All</div>
+                            </div>
+                            <!-- BEGIN Header Controler !-->
+                            <a href="" class="inline action p-r-10 pull-right link text-master">
+                                <i class="pg-more"></i>
+                            </a>
+                            <!-- END Header Controler !-->
+                        </div>
+                    </div>
+                    <!-- END View Header !-->
+                    <div data-init-list-view="ioslist" class="list-view boreded no-top-border chat-users">
+                        <div class="list-view-group-container">
+                            <div class="list-view-group-header text-uppercase">Users</div>
+                            <ul>
+                                <!-- BEGIN Chat User List Item  !-->
+                                <li class="chat-user-list clearfix" ng-repeat="(key, userInfo) in  vm.chatUsers" ng-click="vm.openChanel(userInfo)" ng-class="{'has-message':vm.unreadMessage[userInfo.id]}">
+                                    <a data-view-animation="push-parrallax" data-view-port="#chat" pg-navigate class="" href="">
+                                        <span class="col-xs-height col-middle">
+                                            <span class="thumbnail-wrapper d32 circular bg-success">
+                                                <img check-image ng-src="{{userInfo.avatar}}" alt=""  width="32" height="32">
+                                            </span>
+                                        </span>
+                                        <p class="p-l-10 col-xs-height col-middle col-xs-12">
+                                            <span class="text-master">{{userInfo.name}}</span>
+                                            <span class="block text-master hint-text fs-12"><span ng-repeat="item in userInfo.departments">{{item.name}}</span></span>
+                                        </p>
+                                        <i class="fa fa-circle new-message" ng-if="vm.unreadMessage[userInfo.id]"></i>
+                                    </a>
+                                </li>
+                                <!-- END Chat User List Item  !-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- BEGIN Conversation View  !-->
+                <div class="view chat-view bg-white clearfix">
+                    <!-- BEGIN Header  !-->
+                    <div class="navbar navbar-default">
+                        <div class="navbar-inner">
+                            <a href="javascript:;" class="link text-master inline action p-l-10" pg-navigate data-view-port="#chat" data-view-animation="push-parrallax" ng-click="vm.leftChannel()">
+                                <i class="pg-arrow_left"></i>
+                            </a>
+                            <div class="view-heading">
+                                {{vm.openUserInfo.name}}
+                                <div class="fs-11 hint-text">Online</div>
+                            </div>
+                            <a href="" class="link text-master inline action p-r-10 pull-right ">
+                                <i class="pg-more"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- END Header  !-->
+                    <!-- BEGIN Conversation  !-->
+                    <div class="chat-inner" id="my-conversation"  scroll-to-bottom="vm.messageList">
+                        <!-- BEGIN From Me Message  !-->
+
+                        <div class="message clearfix" ng-repeat="(key, messageItem) in  vm.messageList">
+                            <div class="profile-img-wrapper m-t-5 inline" ng-if="vm.userInfo.id != messageItem.user.id">
+                                <img class="col-top" width="30" height="30" src="assets/img/profiles/avatar_small.jpg" alt="" data-src="assets/img/profiles/avatar_small.jpg" ui-jq="unveil" data-src-retina="assets/img/profiles/avatar_small2x.jpg">
+                            </div>
+                            <div class="chat-bubble" ng-class="{'from-me':vm.userInfo.id == messageItem.user.id, 'from-them':vm.userInfo.id != messageItem.user.id}">
+                                {{messageItem.message}}
+                            </div>
+                        </div>
+                        <!-- END From Me Message  !-->
+                    </div>
+                    <!-- BEGIN Conversation  !-->
+                    <!-- BEGIN Chat Input  !-->
+                    <div class="b-t b-grey bg-white clearfix p-l-10 p-r-10">
+                        <div class="row">
+                            <div class="col-xs-1 p-t-15">
+                                <a href="javascript:;" class="link text-master"><i class="fa fa-plus-circle"></i></a>
+                            </div>
+                            <div class="col-xs-8 no-padding">
+                                <input ng-model = "vm.message" type="text" class="form-control chat-input" data-chat-input="" data-chat-conversation="#my-conversation" placeholder="Say something"  ng-keyup="$event.keyCode == 13 && vm.sendMessage(vm.message)">
+                            </div>
+                            <div class="col-xs-2 link text-master m-l-10 m-t-15 p-l-10 b-l b-grey col-top">
+                                <a href="javascript:;" ng-click="vm.sendMessage(vm.message)" class="link text-master"><i class="fa fa-send"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Chat Input  !-->
+                </div>
+                <!-- END Conversation View  !-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END QUICKVIEW-->

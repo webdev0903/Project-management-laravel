@@ -1,0 +1,283 @@
+.chat-wrapper {
+  background-color: #ffffff;
+}
+
+.chat {
+  height: calc(100vh - 130px);
+  overflow: hidden;
+  outline: none;
+  overflow-y: scroll;
+  margin: 20px;
+  position: relative;
+}
+
+.convo {
+  height: calc(100vh - 250px);
+}
+
+.chat-users, .chat-body {
+  padding-left: 0;
+  overflow: hidden;
+}
+.chat-body{
+  bottom: 0px;
+  position: absolute;
+  width: 100%;
+}
+.chat-users .user {
+  position: relative;
+  padding: 0 0 0 50px;
+  display: block;
+  cursor: pointer;
+  margin: 0 0 20px;
+  .avatar {
+    top: 0;
+    left: 0;
+  }
+}
+
+.chat .avatar {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  img {
+    display: block;
+    border-radius: 20px;
+    height: 100%;
+  }
+  .status {
+    &.off {
+      border: 1px solid #5a5a5a;
+      background: #ffffff;
+    }
+    &.online {
+      background: #4caf50;
+    }
+    &.busy {
+      background: #ffc107;
+    }
+    &.offline {
+      background: #ed4e6e;
+    }
+  }
+}
+
+.chat-users .user .status {
+  bottom: 0;
+  left: 28px;
+}
+
+.chat .avatar .status {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  position: absolute;
+}
+
+.chat-users .user {
+  .name {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .status {
+    font: 200 14px/20px "Oxygen", sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* Chat body */
+
+.chat-body .answer {
+  &.left {
+    padding: 0 0 0 58px;
+    text-align: left;
+    float: left;
+    .avatar {
+      left: 0;
+    }
+  }
+  position: relative;
+  max-width: 600px;
+  overflow: hidden;
+  clear: both;
+  .avatar {
+    bottom: 36px;
+  }
+}
+
+.chat .avatar {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  img {
+    display: block;
+    border-radius: 20px;
+    height: 100%;
+  }
+}
+
+.chat-body .answer {
+  .name {
+    font-size: 14px;
+    line-height: 36px;
+  }
+  &.left .avatar .status {
+    right: 4px;
+  }
+  .avatar .status {
+    bottom: 0;
+  }
+  &.left .text {
+    background: #ebebeb;
+    color: #333333;
+    border-radius: 8px 8px 8px 0;
+  }
+  .text {
+    padding: 12px;
+    font-size: 16px;
+    line-height: 26px;
+    position: relative;
+  }
+  &.left .text:before {
+    left: -30px;
+    border-right-color: #ebebeb;
+    border-right-width: 12px;
+  }
+  .text:before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    border: 18px solid transparent;
+    border-bottom-width: 0;
+  }
+  &.left .time {
+    padding-left: 12px;
+    color: #333333;
+  }
+  .time {
+    font-size: 16px;
+    line-height: 36px;
+    position: relative;
+    padding-bottom: 1px;
+  }
+  &.right {
+    padding: 0 58px 0 0;
+    text-align: right;
+    float: right;
+    .avatar {
+      right: 0;
+      .status {
+        left: 4px;
+      }
+    }
+    .text {
+      background: #222C3C;
+      color: #ffffff;
+      border-radius: 8px 8px 0 8px;
+      &:before {
+        right: -30px;
+        border-left-color: #222C3C;
+        border-left-width: 12px;
+      }
+    }
+    .time {
+      padding-right: 12px;
+      color: #333333;
+    }
+  }
+}
+
+/* Right section */
+
+/* Add Form */
+
+.chat-input {
+  clear: both;
+  position: relative;
+  margin: 0;
+  border: 1px solid #333;
+  background: #fff;
+  input {
+    border: none;
+    background: none;
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    line-height: 40px;
+    padding: 2px 10px;
+    color: #333;
+  }
+}
+
+.chat input {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+.chat-input .answer-btn {
+  display: block;
+  cursor: pointer;
+  line-height: 36px;
+  position: absolute;
+  padding: 0px 10px;
+  border: 1px solid #999;
+  top: 50%;
+  margin-top: -18px;
+  right: 56px;
+  &:active {
+    background-color: #ccc;
+  }
+}
+
+.chat input {
+  &::-webkit-input-placeholder {
+    color: #fff;
+  }
+  &:-moz-placeholder {
+    /* Firefox 18- */
+    color: #fff;
+  }
+  &::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #fff;
+  }
+  &:-ms-input-placeholder {
+    color: #fff;
+  }
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+/*********
+*** Chat User List
+********/
+
+.chat-uesr-list {
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  width: 300px;
+  background-color: #fff;
+  border-left: 1px solid #aaa;
+  height: 100%;
+  cursor: pointer;
+  .user-info {
+    padding: 0px;
+    margin: 0px;
+    line-height: 40px;
+    border-bottom: 1px solid #aaa;
+    &:last-child {
+      border-bottom: none;
+    }
+    &:hover, &.active {
+      background-color: #ddd;
+    }
+  }
+}

@@ -1,0 +1,114 @@
+<!-- START PAGE CONTENT -->
+<div class="container-fluid container-fixed-lg bg-white">
+    <div class="panel panel-transparent">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <b>Notification</b> preferences
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="dataTables_wrapper form-inline no-footer">
+                <table class="table table-hover" id="tabelPreference">
+                    <thead>
+                        <tr>
+                            <th>Notificaiton</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr role="row" class="odd">
+                            <td class="v-align-middle">
+                                <p>Post</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>
+                                    Receive notification everytime
+                                </p>
+                            </td>
+                            <td class="v-align-middle">
+                                <input type="checkbox" class="js-switch" ng-model="vm.preference.post" ui-switch="{color: '#6d5cae',size : 'small'}" />
+                            </td>
+                        </tr>
+                        <tr role="row" class="even">
+                            <td class="v-align-middle">
+                                <p>Upvote</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>
+                                    Get notified when your project get upvoted.
+                                </p>
+                            </td>
+                            <td class="v-align-middle">
+                                <input type="checkbox" class="js-switch" ng-model="vm.preference.upvote" ui-switch="{color: '#6d5cae',size : 'small'}" />
+                            </td>
+                        </tr>
+                        <tr role="row" class="odd">
+                            <td class="v-align-middle">
+                                <p>Comment</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>
+                                    Get notified when your project get commented.
+                                </p>
+                            </td>
+                            <td class="v-align-middle">
+                                <input type="checkbox" class="js-switch" ng-model="vm.preference.comment" ui-switch="{color: '#6d5cae',size : 'small'}" />
+                            </td>
+                        </tr>
+                        <tr role="row" class="even">
+                            <td class="v-align-middle">
+                                <p>Popular</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>
+                                    Get notified when your project is popular.
+                                </p>
+                            </td>
+                            <td class="v-align-middle">
+                                <input type="checkbox" class="js-switch" ng-model="vm.preference.popular" ui-switch="{color: '#6d5cae',size : 'small'}" />
+                            </td>
+                        </tr>
+                        <tr role="row" class="odd">
+                            <td class="v-align-middle">
+                                <p>Approved</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>
+                                    Get notified when your project status is approved.
+                                </p>
+                            </td>
+                            <td class="v-align-middle">
+                                <input type="checkbox" class="js-switch" ng-model="vm.preference.approved" ui-switch="{color: '#6d5cae',size : 'small'}" />
+                            </td>
+                        </tr>
+                        <tr role="row" class="even">
+                            <td class="v-align-middle">
+                                <p>Refused</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>
+                                    Get notified when your project status is refused.
+                                </p>
+                            </td>
+                            <td class="v-align-middle">
+                                <input type="checkbox" class="js-switch" ng-model="vm.preference.dismissed" ui-switch="{color: '#6d5cae',size : 'small'}" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- -->
+            <div class="row">
+                <div class="pull-right">
+                    <button id="show-modal" class="btn btn-primary btn-cons" ng-click="vm.save()">
+						<i class="fa fa-save"></i> Save
+					</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- END PAGE CONTENT -->

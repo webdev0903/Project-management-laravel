@@ -1,0 +1,222 @@
+<!-- START PAGE CONTENT -->
+<!-- START CONTAINER FLUID -->
+<div class="container-fluid container-fixed-lg user-profile-other">
+    <ul class="breadcrumb">
+        <li>
+            <a>Home</a>
+        </li>
+        <li><a class="active">Profie</a>
+        </li>
+    </ul>
+    <!-- END BREADCRUMB -->
+    <!-- START PANEL -->
+    <div class="panel panel-default col-md-10 col-md-offset-1 user_profile_div">
+        <div class="panel-heading button-div">
+            <a class="javascript:;"><i class="fa fa-envelope"></i></a>
+            <a ng-if="vm.userInfo['is_favorite']" href="javascript:;" ng-click="vm.toggleProfileLike()"><i class="fa fa-star"></i></a>
+            <a ng-if="!vm.userInfo['is_favorite']" href="javasript:;" ng-click="vm.toggleProfileLike()"><i class="fa fa-star-o"></i></a>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="row user_profile_pic_div">
+                <div class="profile_img m-t-5">
+                    <img ng-click="vm.editProfile()" check-image src="{{vm.userInfo.avatar}}" alt=""  width="180" height="180">
+                </div>
+                <div class="clearfix"></div>
+                <div class="user-info-div">
+                    <p class="user-name">{{vm.userInfo.fullname}}</p>
+                    <p class="user-role"><span ng-repeat="job_item in vm.userInfo.jobtitles">{{job_item.title}}</span></p>
+                    <span class="user-department">Departments</span><span ng-repeat="(index, user_dep_item) in vm.userInfo.departments" class="badge badge-success m-l-5">{{user_dep_item.name}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="user_detail_div">
+            <div class="row metric-div">
+                <div class="post-div">
+                    <span class="p-r-5 icon">
+                        <img src="img/custom/comment-bg.png" alt="img" class="brand">
+                    </span>
+                    <span class="number">{{vm.userInfo.post_count}}</span>
+                    <span>Posts</span>
+                </div>
+                <div class="like-div">
+                    <span class="p-r-5 icon">
+                        <i class="fa fa-heart fs-20"></i>
+                    </span>
+                    <span class="number">{{vm.userInfo.like_count}}</span>
+                    <span>Likes</span>
+                </div>
+                <div class="point-div">
+                    <span class="p-r-5 icon">
+                        <img src="img/custom/point-icon.png" alt="img" class="brand">
+                    </span>
+                    <span class="number">{{vm.userInfo.point}}</span>
+                    <span>Points</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 about-me">
+                    <h5>About Me</h5>
+                    <p>{{vm.userInfo.about_me}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="more-div row">
+            <div class="col-md-5 activity-div">
+                <h5>Activities</h5>
+                <div class="timeline-container top-circle">
+                    <section class="timeline">
+                        <img class="user-photo" check-image   ng-src="{{vm.userInfo.avatar}}" alt=""  width="40" height="40">
+                        <div class="timeline-block" ng-repeat="(index, activity_item) in vm.userActivities">
+                            <div class="" ng-if="activity_item.activity_type == 'post.like'">
+                                <div class="timeline-point pink">
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="event-date">
+                                        <p class="title">You liked post <img class="m-l-10" src="img/custom/point-icon.png" alt="img" class="brand"> <span>{{activity_item.point}} points</span></p>
+                                        <p><img src="img/custom/time-clock.png" alt="img" class="brand"> &nbsp;<span class="datetime" am-time-ago="activity_item.created_at | amUtc | amLocal"></span></p>
+                                    </div>
+                                    <div class="">
+                                        <a href="javascript:;" ng-click="vm.detailView(activity_item)">{{activity_item.title}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="" ng-if="activity_item.activity_type == 'comment.new'">
+                                <div class="timeline-point complete">
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="event-date">
+                                        <p class="title">Comment <img class="m-l-10" src="img/custom/point-icon.png" alt="img" class="brand">
+                                        <span>{{activity_item.point}} points</span></p>
+                                        <p><img src="img/custom/time-clock.png" alt="img" class="brand"> &nbsp;<span class="datetime" am-time-ago="activity_item.created_at | amUtc | amLocal"></span></p>
+                                    </div>
+                                    <div class="m-b-20">
+                                        <a href="javascript:;" ng-click="vm.detailView(activity_item)">{{activity_item.title}}</a>
+                                    </div>
+                                    <div class="card share full-width">
+                                        <div class="card-description">
+                                            <p>{{activity_item.comment}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="" ng-if="activity_item.activity_type == 'post.create'">
+                                <div class="timeline-point success">
+                                    <i class="fa fa-send"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="event-date">
+                                        <p class="title">You created a new post <img class="m-l-10" src="img/custom/point-icon.png" alt="img" class="brand">
+                                        <span>{{activity_item.point}} points</span></p>
+                                        <p><img src="img/custom/time-clock.png" alt="img" class="brand"> &nbsp;<span class="datetime" am-time-ago="activity_item.created_at | amUtc | amLocal"></span></p>
+                                    </div>
+                                    <div class="m-b-20">
+                                        <a href="javascript:;" ng-click="vm.detailView(activity_item)">{{activity_item.title}}</a>
+                                    </div>
+                                    <div class="card share full-width">
+                                        <div class="card-description">
+                                            <p>{{activity_item.description}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="" ng-if="activity_item.activity_type == 'post.liked'">
+                                <div class="timeline-point">
+                                    <img ng-click="vm.viewProfile(activity_item.user.user)"  class="user-photo" check-image   ng-src="{{activity_item.user.user.avatar}}" alt=""  width="40" height="40">
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="event-date">
+                                        <p class="title"> liked your post <img class="m-l-10" src="img/custom/point-icon.png" alt="img" class="brand">
+                                        <span>{{activity_item.point}} points</span></p>
+                                        <p><img src="img/custom/time-clock.png" alt="img" class="brand"> &nbsp;<span class="datetime" am-time-ago="activity_item.created_at | amUtc | amLocal"></span></p>
+                                    </div>
+                                    <div class="m-b-20">
+                                        <a href="javascript:;" ng-click="vm.detailView(activity_item)">{{activity_item.title}}</a>
+                                    </div>
+                                    <div class="card share full-width">
+                                        <div class="card-description">
+                                            <p>{{activity_item.description}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="" ng-if="activity_item.activity_type == 'comment.get'">
+                                <div class="timeline-point complete">
+                                    <img ng-click="vm.viewProfile(activity_item.user.user)" class="user-photo" check-image   ng-src="{{activity_item.user.user.avatar}}" alt=""  width="40" height="40">
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="event-date">
+                                        <p class="title"> let comment on your project <img class="m-l-10" src="img/custom/point-icon.png" alt="img" class="brand">
+                                        <span>{{activity_item.point}} points</span></p>
+                                        <p><img src="img/custom/time-clock.png" alt="img" class="brand"> &nbsp;<span class="datetime" am-time-ago="activity_item.created_at | amUtc | amLocal"></span></p>
+                                    </div>
+                                    <div class="m-b-20">
+                                        <a href="javascript:;" ng-click="vm.detailView(activity_item)">{{activity_item.title}}</a>
+                                    </div>
+                                    <div class="card share full-width">
+                                        <div class="card-description">
+                                            <p>{{activity_item.comment}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="col-md-7 mypost-div">
+                <h5>My Posts</h5>
+                <div ng-repeat="project in vm.projects" class="row m-b-60">
+                    <div class="project-detail-view col-md-12">
+                        <div class="main-content">
+                            <div class="user-info clearfix">
+                                <div class="user-avatar pull-left">
+                                    <img width="50px" height="50px"  alt="" src="{{vm.userInfo.avatar}}" check-image>
+                                </div>
+                                <div class="user-detail pull-left">
+                                    <p><span class="user-name">{{vm.userInfo.name}}</span> in
+                                        <span ng-repeat="(index, user_dep_item) in vm.userInfo.departments" class="badge badge-success m-l-5">{{user_dep_item.name}}</span>
+                                    </p>
+                                    <p><img src="img/custom/time-clock.png" alt="img" class="brand"> &nbsp;<span class="datetime" am-time-ago="project.created_at | amUtc | amLocal"></span></p>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <a class="project-title" href="javascript:;"  ng-click="vm.detailView(project)">{{project.title}}</a>
+                                <p class="project-description">
+                                    {{project.description}}
+                                </p>
+                                <div class="attachment-div">
+                                    <span>Attachments</span>
+                                    <div ng-repeat="(index,file_item) in project.file" class="attachment-item">
+                                        <a class="attachment-info" href="{{vm.getImageUrl(project.id,file_item.filename)}}" download>
+                                            <img src="img/custom/attachment.png" alt="img" class="brand"> <span>  {{file_item.org_filename}}</span>
+                                        </a>
+                                        <div  ng-if="vm.imageTypeArr.indexOf(file_item.filetype) != -1" class="image-div" style="background-image: url({{vm.getImageUrl(project.id,file_item.filename)}})"></div>
+                                    </div>
+                                </div>
+                                <div class="status-div">
+                                    <div class="likes-div">
+                                        <span class="p-t-5 p-b-5 p-r-5">
+            								<i class="fa fa-heart fs-20"></i>
+            							</span>
+                                        <span>{{project.vote_count}} Likes</span>
+                                    </div>
+                                    <div class="comments-div">
+                                        <span class="p-r-5">
+                                            <img src="img/custom/comment-bg.png" alt="img" class="brand">
+                                        </span>
+                                        <span>{{project.comment_count}} comments</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

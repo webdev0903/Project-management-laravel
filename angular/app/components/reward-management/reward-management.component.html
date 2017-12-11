@@ -1,0 +1,69 @@
+<!-- START CONTAINER FLUID -->
+<div class="container-fluid container-fixed-lg bg-white">
+    <!-- START PANEL -->
+    <div class="panel panel-transparent">
+        <div class="panel-heading">
+            <div class="panel-title">Reward Table</div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Point</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in vm.rewards" on-finish-render="initDataTable">
+                    <td class="v-align-middle">
+                        <p>{{item.title}}</p>
+                    </td>
+                    <td class="v-align-middle">
+                        <p><p>{{item.point}}</p></p>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary btn-xs m-t-10" ng-click="vm.editReward(item)"><i class="fa fa-edit"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- END PANEL -->
+</div>
+<!-- END CONTAINER FLUID -->
+
+<!-- MODAL STICK UP  -->
+<div class="modal fade stick-up" id="editRewardModal" tabindex="-1" role="dialog" aria-labelledby="editRewardModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header clearfix ">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+                </button>
+                <h4 class="p-b-5"><span class="semi-bold">Edit</span> Reward Setting</h4>
+            </div>
+            <form role="form" name="vm.editRewardForm" ng-submit="vm.updateReward(vm.editRewardForm.$valid)" novalidate>
+                <div class="modal-body">
+                    <p class="small-text">Update the point</p>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div pg-form-group class="form-group form-group-default required" ng-class="{ 'has-error': vm.editRewardForm.point.$invalid && ( vm.formSubmitted || vm.editRewardForm.point.$touched) }">
+                                <label>Point</label>
+                                <input id="departmentName" ng-model="vm.updateRewardItem.point" name="point" type="number" class="form-control" placeholder="Name" required>
+                            </div>
+                            <label class="error help-block" for="point" ng-show="vm.editRewardForm.point.$error.required && ( vm.formSubmitted || vm.editRewardForm.point.$touched)">This field is required.</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" ng-disabled="vm.editRewardForm.$invalid" class="btn btn-primary btn-cons">Update</button>
+                    <button type="button" class="btn btn-cons" ng-click="vm.hideModal()">Close</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
